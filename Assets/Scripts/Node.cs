@@ -65,7 +65,7 @@ public class Node : MonoBehaviour
         return isPlayer;
     }
 
-    public void SetTrait(TraitNames.Traits trait, TraitNames.Attributes attribute, TraitNames.Hair newHair, TraitNames.Makeup newMakeup)
+    public void SetTrait(TraitNames.Traits trait, TraitNames.Attributes attribute)
     {
         switch (trait)
         {
@@ -78,12 +78,14 @@ public class Node : MonoBehaviour
             case TraitNames.Traits.Eyes:
                 eyes = (int)attribute;
                 break;
+	/*
             case TraitNames.Traits.Hair:
                 hair = (int)newHair;
                 break;
             case TraitNames.Traits.Makeup:
                 makeup = (int)newMakeup;
                 break;
+	*/
             default:
                 break;
         }
@@ -106,6 +108,14 @@ public class Node : MonoBehaviour
             default:
                 return 0;
         }
+    }
+
+    public void SetHair(TraitNames.Traits trait, TraitNames.Hair newHair) {
+	hair = (int)newHair;
+    }
+
+    public void SetMakeup(TraitNames.Traits trait, TraitNames.Makeup newMakeup) {
+	makeup = (int)newMakeup;
     }
 
 }

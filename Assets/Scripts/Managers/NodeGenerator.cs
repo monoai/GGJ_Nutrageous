@@ -26,20 +26,20 @@ public class NodeGenerator : MonoBehaviour
     public Sprite ears_tri;
     public Sprite ears_sqr, ears_cir, ears_ova, ears_rec, ears_dia;
 
-	[Header("Hair")]
-	public Sprite hair_0;
-	public Sprite hair_1, hair_2, hair_3, hair_4, hair_5, hair_6, hair_7, hair_8, hair_9, hair_10;
+    [Header("Hair")]
+    public Sprite hair_0;
+    public Sprite hair_1, hair_2, hair_3, hair_4, hair_5, hair_6, hair_7, hair_8, hair_9, hair_10;
 
-	[Header("Makeup")]
-	public Sprite makeup_0;
-	public Sprite makeup_1, makeup_2, makeup_3, makeup_4, makeup_5, makeup_6, makeup_7, makeup_8, makeup_9, makeup_10;
+    [Header("Makeup")]
+    public Sprite makeup_0;
+    public Sprite makeup_1, makeup_2, makeup_3, makeup_4, makeup_5, makeup_6, makeup_7, makeup_8, makeup_9, makeup_10;
 
-	[Header("Frame")]
-	public Sprite frame_1;
-	public Sprite frame_2, frame_3;
+    [Header("Frame")]
+    public Sprite frame_1;
+    public Sprite frame_2, frame_3;
 
 	// While we haven't done the actual level implementations, any other necessary information about the level that the node generator also needs will be here. Maybe we could transfer it somewhere else or maybe reworked into another script, we'll figure it out.
-	[Header("Level Information")]
+    [Header("Level Information")]
     [Header("Tiers")]
     [SerializeField] private int[] tier;
 
@@ -61,21 +61,18 @@ public class NodeGenerator : MonoBehaviour
 	Debug.Log("currDepth: " + currDepth);
 	Debug.Log("tier.Length: " + tier.Length);
 	//while(currDepth != tier.Length) {
-		GenerateNode(3, currDepth);
+		GenerateNode(3, null, currDepth);
 		//currDepth++;
 	//}
     }
 
-    private GameObject GenerateNode(int children, int currDepth){
+    private GameObject GenerateNode(int children, GameObject parent, int currDepth){
 	// Assume that the object is being generated on a proper game object, else replace this with the proper parent gameobject.
 	GameObject nodeObj = Instantiate(nodeTemplate, this.transform);
 	// Don't forget to replace with proper node script
 	Node node = nodeObj.GetComponent<Node>();
-	/*
-	node.SetTrait(TraitNames.Traits.Eyes, TraitNames.Attributes.TRIANGLE);
-	node.SetTrait(TraitNames.Traits.Nose, TraitNames.Attributes.SQUARE);
-	node.SetTrait(TraitNames.Traits.Ears, TraitNames.Attributes.CIRCLE);
-	*/
+	node.Parent = parent;
+	assignTrait(nodeObj, currDepth);
 	node.SetDepth(currDepth);
 	SetSprites(nodeObj);
 	if(currDepth < 3) {
@@ -87,9 +84,9 @@ public class NodeGenerator : MonoBehaviour
 			} else {
 				child = 2;
 			}
-			var newNode = GenerateNode(child, currDepth+1);
+			var newNode = GenerateNode(child, nodeObj, currDepth+1);
 			node.Connections.Add(newNode);
-			newNode.GetComponent<Node>().Parent = nodeObj;
+			//newNode.GetComponent<Node>().Parent = nodeObj;
 			newNode.GetComponent<Node>().SetDepth(currDepth+1);
 			if(CoinFlip() == 1 && hiddenCount < 3) {
 				newNode.GetComponent<Node>().SetHidden(true);
@@ -106,6 +103,35 @@ public class NodeGenerator : MonoBehaviour
 
     private int CoinFlip() {
 	return Random.Range(0,2);
+    }
+
+    private void assignTrait(GameObject nodeObj, int currDepth) {
+	Node node = nodeObj.GetComponent<Node>();
+	//SetFrame
+	var attribute = (TraitNames.Attributes)Random.Range(0,6);
+	if(currDepth == 1) {
+		node.SetTrait(TraitNames.Traits.Eyes, attribute);
+	} else if (currDepth == 2) {
+		//Gets parents' traits then assigns
+		var eyes = node.Parent.GetComponent<Node>().GetTraits(TraitNames.Traits.Eyes);
+		node.SetTrait(TraitNames.Traits.Eyes, (TraitNames.Attributes)eyes);
+		node.SetTrait(TraitNames.Traits.Ears, attribute);
+		//SetFrame
+	} else if (currDepth == 3) {
+		//Gets parents' traits then assigns
+		var eyes = node.Parent.GetComponent<Node>().GetTraits(TraitNames.Traits.Eyes);
+		node.SetTrait(TraitNames.Traits.Eyes, (TraitNames.Attributes)eyes);
+		var ears = node.Parent.GetComponent<Node>().GetTraits(TraitNames.Traits.Ears);
+		node.SetTrait(TraitNames.Traits.Ears, (TraitNames.Attributes)ears);
+		node.SetTrait(TraitNames.Traits.Nose, attribute);
+		//SetFrame
+	} else {
+		Debug.Log("It is a mystery");
+	}
+	var hair = (TraitNames.Hair)Random.Range(0,11);
+	var makeup = (TraitNames.Makeup)Random.Range(0,8);
+	node.SetHair(TraitNames.Traits.Hair, hair);
+	node.SetMakeup(TraitNames.Traits.Makeup, makeup);
     }
 
     private void SetSprites(GameObject node){
