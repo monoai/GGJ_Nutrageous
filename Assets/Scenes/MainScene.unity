@@ -5436,9 +5436,9 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9423cbe221371f24f84905628eaf1d66, type: 3}
   - {fileID: 21300000, guid: 514c9916e9bd25d4384e6a2590b4e618, type: 3}
   - {fileID: 21300000, guid: 5cc50040a72f1234f95e31db42d7033e, type: 3}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 21300000, guid: 96b89ff8b86dd5b73bd6d3eca4ff7cdc, type: 3}
+  - {fileID: 21300000, guid: 857862e8991fa5b14b75f2e3492c0ecc, type: 3}
+  - {fileID: 21300000, guid: 71086467f716c5ab7b31a8ef05a94b43, type: 3}
   - {fileID: 0}
   makeupsList:
   - {fileID: 21300000, guid: bfbcf376ee026f9409fbb8e4a9af5673, type: 3}

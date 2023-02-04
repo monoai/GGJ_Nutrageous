@@ -158,8 +158,8 @@ public class NodeGenerator : MonoBehaviour
 		else {
 		Debug.Log("It is a mystery");
 	}
-	var hair = (TraitNames.Hair)Random.Range(0,11);
-	var makeup = (TraitNames.Makeup)Random.Range(0,8);
+	var hair = (TraitNames.Hair)Random.Range(0,10);
+	var makeup = (TraitNames.Makeup)Random.Range(0,4);
 	node.SetHair(TraitNames.Traits.Hair, hair);
 	node.SetMakeup(TraitNames.Traits.Makeup, makeup);
 
