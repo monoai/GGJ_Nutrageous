@@ -6,9 +6,6 @@ public class DustSweeper : MonoBehaviour
 {
     [SerializeField]
     private int sweepRadius = 20;
-    [Range(0, 255)]
-    [SerializeField]
-    private int opacityStrength = 50;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +25,7 @@ public class DustSweeper : MonoBehaviour
                     Dust dustComponent = hit.collider.GetComponent<Dust>();
                     if (dustComponent != null)
                     {
-                        dustComponent.SweepPosition(pixelPosition, sweepRadius, opacityStrength);
+                        dustComponent.SweepPosition(pixelPosition, sweepRadius);
                     }
                 }
             }

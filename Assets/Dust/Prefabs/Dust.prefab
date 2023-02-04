@@ -101,6 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dustTexture: {fileID: 2800000, guid: b24971fe87c16e94cbe02e0b1a77a308, type: 3}
   dustSpriteRenderer: {fileID: 7702202072527391577}
+  opacityStrength: 40
 --- !u!50 &7702202072527391574
 Rigidbody2D:
   serializedVersion: 4

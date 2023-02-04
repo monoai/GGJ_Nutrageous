@@ -8,6 +8,9 @@ public class Dust : MonoBehaviour
     private Texture2D dustTexture;
     [SerializeField]
     private SpriteRenderer dustSpriteRenderer;
+    [Range(0, 255)]
+    [SerializeField]
+    private int opacityStrength = 50;
 
     private Sprite dustSpriteInstance;
     private Texture2D dustTextureInstance;
@@ -27,7 +30,7 @@ public class Dust : MonoBehaviour
         height = dustTextureInstance.height;
     }
   
-    public void SweepPosition(Vector2 pixelPosition, int sweepRadius, int opacityStrength)
+    public void SweepPosition(Vector2 pixelPosition, int sweepRadius)
     {
         bool hasSwept = false;
         for (int offsetX = -sweepRadius; offsetX <= sweepRadius; offsetX++)
