@@ -9,11 +9,11 @@ public class Node : MonoBehaviour
     [Header("Traits")]
     private int eyes = 0;
     private int nose = 0;
-    private int ear = 0;
+    private int ears = 0;
 
-    [SerializeField] private Sprite sEye;
+    [SerializeField] private Sprite sEyes;
     [SerializeField] private Sprite sNose;
-    [SerializeField] private Sprite sEar;
+    [SerializeField] private Sprite sEars;
 
     public List<Node> Connections = new List<Node> ();
     public GameObject Parent;
@@ -30,14 +30,37 @@ public class Node : MonoBehaviour
 
     }
 
-    public void SetTrait(Sprite newEye)
+    public void SetTrait(TraitNames.Traits trait, TraitNames.Attributes attribute)
     {
-        sEye = newEye;
+        switch (trait)
+        {
+            case TraitNames.Traits.Ears:
+                ears = (int)attribute;
+                break;
+            case TraitNames.Traits.Nose:
+                nose = (int)attribute;
+                break;
+            case TraitNames.Traits.Eyes:
+                eyes = (int)attribute;
+                break;
+            default:
+                break;
+        }
     }
 
-    public Sprite GetEye()
+    public int GetTraits(TraitNames.Traits trait)
     {
-        return sEye;
+        switch (trait)
+        {
+            case TraitNames.Traits.Ears:
+                return ears;
+            case TraitNames.Traits.Nose:
+                return nose;
+            case TraitNames.Traits.Eyes:
+                return eyes;
+            default:
+                return 0;
+        }
     }
 
 }
