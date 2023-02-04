@@ -15,7 +15,7 @@ public class Node : MonoBehaviour
     [SerializeField] private Sprite sNose;
     [SerializeField] private Sprite sEars;
 
-    public List<Node> Connections = new List<Node> ();
+    public List<GameObject> Connections = new List<GameObject> ();
     public GameObject Parent;
 
     // Start is called before the first frame update

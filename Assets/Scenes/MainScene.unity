@@ -336,7 +336,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de7f2a73b509fd613b383f0e71964f6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nodeTemplate: {fileID: 0}
+  nodeTemplate: {fileID: 2713190224615244613, guid: 40e265df845ffb1a2a986975a3b16f38, type: 3}
+  eye_tri: {fileID: 0}
+  eye_sqr: {fileID: 0}
+  eye_cir: {fileID: 0}
+  eye_ova: {fileID: 0}
+  eye_rec: {fileID: 0}
+  eye_dia: {fileID: 0}
+  nose_tri: {fileID: 0}
+  nose_sqr: {fileID: 0}
+  nose_cir: {fileID: 0}
+  nose_ova: {fileID: 0}
+  nose_rec: {fileID: 0}
+  nose_dia: {fileID: 0}
+  ears_tri: {fileID: 0}
+  ears_sqr: {fileID: 0}
+  ears_cir: {fileID: 0}
+  ears_ova: {fileID: 0}
+  ears_rec: {fileID: 0}
+  ears_dia: {fileID: 0}
+  tier: 010000000200000004000000
 --- !u!4 &615710651
 Transform:
   m_ObjectHideFlags: 0
