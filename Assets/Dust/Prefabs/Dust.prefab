@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7702202072527391577}
   - component: {fileID: 7702202072527391578}
   - component: {fileID: 7702202072527391574}
-  - component: {fileID: 7702202072527391575}
+  - component: {fileID: 5835588408826669522}
   m_Layer: 6
   m_Name: Dust
   m_TagString: Untagged
@@ -28,7 +28,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7702202072527391579}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.6098, y: 0.6369, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: b24971fe87c16e94cbe02e0b1a77a308, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ffc96694102f0224388cdd749d71598c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c317936958f29748b6467ded8bd3aac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dustTexture: {fileID: 2800000, guid: b24971fe87c16e94cbe02e0b1a77a308, type: 3}
+  dustTexture: {fileID: 2800000, guid: ffc96694102f0224388cdd749d71598c, type: 3}
   dustSpriteRenderer: {fileID: 7702202072527391577}
   opacityStrength: 40
 --- !u!50 &7702202072527391574
@@ -123,7 +123,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &7702202072527391575
+--- !u!61 &5835588408826669522
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -140,12 +140,12 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 8, y: 8}
+    oldSize: {x: 4.5, y: 4.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 8, y: 8}
+  m_Size: {x: 4.5, y: 4.5}
   m_EdgeRadius: 0
