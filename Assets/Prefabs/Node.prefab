@@ -731,9 +731,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b627db719fc14bb4695761d607242fb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  eyes: 0
+  nose: 0
+  ears: 0
+  hair: 0
+  makeup: 0
+  frame: 0
   sEyes: {fileID: 569675045}
   sNose: {fileID: 1804580787}
-  sEars: {fileID: 0}
+  sEars: {fileID: 1909917858}
   sHair: {fileID: 175337261784576065}
   sMakeup: {fileID: 2836985425604065756}
   sFrame: {fileID: 1365872482}

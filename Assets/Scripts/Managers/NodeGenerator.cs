@@ -119,7 +119,7 @@ public class NodeGenerator : MonoBehaviour
 	//SetFrame
 	var attribute = (TraitNames.Attributes)Random.Range(0,6);
 	node.SetFrame(TraitNames.Traits.Frame, (TraitNames.Frame)1);
-	node.SetSprite(TraitNames.Traits.Frame, framesList[1]);
+	node.SetSprite(TraitNames.Traits.Frame, framesList[0]);
 		if (currDepth == 1)
 		{
 			node.SetTrait(TraitNames.Traits.Eyes, attribute);
@@ -135,7 +135,7 @@ public class NodeGenerator : MonoBehaviour
 		node.SetSprite(TraitNames.Traits.Ears, earsList[(int)attribute]);
 
 		node.SetFrame(TraitNames.Traits.Frame, (TraitNames.Frame)2);
-		node.SetSprite(TraitNames.Traits.Frame, framesList[2]);
+		node.SetSprite(TraitNames.Traits.Frame, framesList[1]);
 			//SetFrame
 		}
 		else if (currDepth == 3) {
@@ -152,7 +152,7 @@ public class NodeGenerator : MonoBehaviour
 		node.SetSprite(TraitNames.Traits.Nose, nosesList[(int)attribute]);
 
 		node.SetFrame(TraitNames.Traits.Frame, (TraitNames.Frame)3);
-		node.SetSprite(TraitNames.Traits.Frame, framesList[3]);
+		node.SetSprite(TraitNames.Traits.Frame, framesList[2]);
 			//SetFrame
 		}
 		else {
