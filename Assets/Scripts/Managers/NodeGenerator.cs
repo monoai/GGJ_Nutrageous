@@ -33,8 +33,9 @@ public class NodeGenerator : MonoBehaviour
 
     // This shouldn't be visible, only needed by the generator's algorithm
     [Header("Algorithm Variables")]
-    private int currDepth;
+    private int currDepth = 0;
     private int currNodes = 0;
+    private int hiddenCount = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -48,7 +49,7 @@ public class NodeGenerator : MonoBehaviour
 	Debug.Log("currDepth: " + currDepth);
 	Debug.Log("tier.Length: " + tier.Length);
 	//while(currDepth != tier.Length) {
-		GenerateNode(2, currDepth);
+		GenerateNode(3, currDepth);
 		//currDepth++;
 	//}
     }
@@ -64,8 +65,9 @@ public class NodeGenerator : MonoBehaviour
 	//node.SetTrait(TraitNames.Traits.Mouth, TraitNames.Attributes.TRIANGLE);
 	node.SetTrait(TraitNames.Traits.Ears, TraitNames.Attributes.CIRCLE);
 	*/
+	node.SetDepth(currDepth);
 	SetSprites(nodeObj);
-	if(currDepth < 4) {
+	if(currDepth < 3) {
 		for(int i = 0; i < children; i++){
 			int child = 0;
 			// Every time the depth is the third tier/layer, it will instead spawn 3 children instead of 2.
@@ -77,9 +79,19 @@ public class NodeGenerator : MonoBehaviour
 			var newNode = GenerateNode(child, currDepth+1);
 			node.Connections.Add(newNode);
 			newNode.GetComponent<Node>().Parent = nodeObj;
+			newNode.GetComponent<Node>().SetDepth(currDepth+1);
+			if(CoinFlip() == 1 && hiddenCount < 3) {
+				newNode.GetComponent<Node>().SetHidden(true);
+				hiddenCount++;
+			}
+			
 		}
 	}
 	return nodeObj;
+    }
+
+    private int CoinFlip() {
+	return Random.Range(0,2);
     }
 
     private void SetSprites(GameObject node){

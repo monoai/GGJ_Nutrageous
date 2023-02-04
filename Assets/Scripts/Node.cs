@@ -11,6 +11,15 @@ public class Node : MonoBehaviour
     private int nose = 0;
     private int ears = 0;
 
+    [Header("Personality")]
+    private int hair = 0;
+    private int makeup = 0;
+
+    [Header("Node Flags")]
+    private bool isHidden = false;
+    private bool isPlayer = false;
+    private int depth = 0;
+
     [SerializeField] private Sprite sEyes;
     [SerializeField] private Sprite sNose;
     [SerializeField] private Sprite sEars;
@@ -29,6 +38,17 @@ public class Node : MonoBehaviour
     {
 
     }
+
+    public void SetHidden(bool newBool)
+    {
+        isHidden = newBool;
+    }
+
+    public void SetDepth(int newDepth)
+    {
+        depth = newDepth;
+    }
+
 
     public void SetTrait(TraitNames.Traits trait, TraitNames.Attributes attribute)
     {
