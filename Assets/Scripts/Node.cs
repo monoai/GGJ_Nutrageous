@@ -5,11 +5,18 @@ using UnityEngine;
 public class Node : MonoBehaviour
 {
     // enum/int Traits
-    // enum/int Personality
     // List of connections
-    enum Traits { Eyes, Ears, Nose, Mouth }
-    enum Personality { Personality1 = 0, Personality2 = 1, Personality3 = 2 }
-    LinkedList<Node> Connections = new LinkedList<Node> ();
+    [Header("Traits")]
+    private int eyes = 0;
+    private int nose = 0;
+    private int ear = 0;
+
+    [SerializeField] private Sprite sEye;
+    [SerializeField] private Sprite sNose;
+    [SerializeField] private Sprite sEar;
+
+    public List<Node> Connections = new List<Node> ();
+    public GameObject Parent;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +27,17 @@ public class Node : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
+
+    public void SetTrait(Sprite newEye)
+    {
+        sEye = newEye;
+    }
+
+    public Sprite GetEye()
+    {
+        return sEye;
+    }
+
 }
