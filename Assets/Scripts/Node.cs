@@ -6,14 +6,15 @@ public class Node : MonoBehaviour
 {
     // enum/int Traits
     // List of connections
-    [Header("Traits")]
+    [Header("Characteristics")]
     private int eyes = 0;
     private int nose = 0;
     private int ears = 0;
 
-    [Header("Personality")]
     private int hair = 0;
     private int makeup = 0;
+
+    private int frame = 0;
 
     [Header("Node Flags")]
     private bool isHidden = false;
@@ -23,6 +24,11 @@ public class Node : MonoBehaviour
     [SerializeField] private Sprite sEyes;
     [SerializeField] private Sprite sNose;
     [SerializeField] private Sprite sEars;
+
+    [SerializeField] private Sprite sHair;
+    [SerializeField] private Sprite sMakeup;
+
+    [SerializeField] private Sprite sFrame;
 
     public List<GameObject> Connections = new List<GameObject> ();
     public GameObject Parent;
@@ -49,8 +55,17 @@ public class Node : MonoBehaviour
         depth = newDepth;
     }
 
+    public void SetPlayerFlag(bool newBool)
+    {
+        isPlayer = newBool;
+    }
 
-    public void SetTrait(TraitNames.Traits trait, TraitNames.Attributes attribute)
+    public bool GetPlayerFlag()
+    {
+        return isPlayer;
+    }
+
+    public void SetTrait(TraitNames.Traits trait, TraitNames.Attributes attribute, TraitNames.Hair newHair, TraitNames.Makeup newMakeup)
     {
         switch (trait)
         {
@@ -62,6 +77,12 @@ public class Node : MonoBehaviour
                 break;
             case TraitNames.Traits.Eyes:
                 eyes = (int)attribute;
+                break;
+            case TraitNames.Traits.Hair:
+                hair = (int)newHair;
+                break;
+            case TraitNames.Traits.Makeup:
+                makeup = (int)newMakeup;
                 break;
             default:
                 break;
@@ -78,6 +99,10 @@ public class Node : MonoBehaviour
                 return nose;
             case TraitNames.Traits.Eyes:
                 return eyes;
+            case TraitNames.Traits.Makeup:
+                return hair;
+            case TraitNames.Traits.Hair:
+                return makeup;
             default:
                 return 0;
         }

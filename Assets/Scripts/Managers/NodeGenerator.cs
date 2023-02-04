@@ -26,8 +26,20 @@ public class NodeGenerator : MonoBehaviour
     public Sprite ears_tri;
     public Sprite ears_sqr, ears_cir, ears_ova, ears_rec, ears_dia;
 
-    // While we haven't done the actual level implementations, any other necessary information about the level that the node generator also needs will be here. Maybe we could transfer it somewhere else or maybe reworked into another script, we'll figure it out.
-    [Header("Level Information")]
+	[Header("Hair")]
+	public Sprite hair_0;
+	public Sprite hair_1, hair_2, hair_3, hair_4, hair_5, hair_6, hair_7, hair_8, hair_9, hair_10;
+
+	[Header("Makeup")]
+	public Sprite makeup_0;
+	public Sprite makeup_1, makeup_2, makeup_3, makeup_4, makeup_5, makeup_6, makeup_7, makeup_8, makeup_9, makeup_10;
+
+	[Header("Frame")]
+	public Sprite frame_1;
+	public Sprite frame_2, frame_3;
+
+	// While we haven't done the actual level implementations, any other necessary information about the level that the node generator also needs will be here. Maybe we could transfer it somewhere else or maybe reworked into another script, we'll figure it out.
+	[Header("Level Information")]
     [Header("Tiers")]
     [SerializeField] private int[] tier;
 
@@ -62,7 +74,6 @@ public class NodeGenerator : MonoBehaviour
 	/*
 	node.SetTrait(TraitNames.Traits.Eyes, TraitNames.Attributes.TRIANGLE);
 	node.SetTrait(TraitNames.Traits.Nose, TraitNames.Attributes.SQUARE);
-	//node.SetTrait(TraitNames.Traits.Mouth, TraitNames.Attributes.TRIANGLE);
 	node.SetTrait(TraitNames.Traits.Ears, TraitNames.Attributes.CIRCLE);
 	*/
 	node.SetDepth(currDepth);
@@ -84,7 +95,10 @@ public class NodeGenerator : MonoBehaviour
 				newNode.GetComponent<Node>().SetHidden(true);
 				hiddenCount++;
 			}
-			
+			if (CoinFlip() == 2 && !newNode.GetComponent<Node>().GetPlayerFlag()){
+				newNode.GetComponent<Node>().SetPlayerFlag(true);
+            }
+
 		}
 	}
 	return nodeObj;
