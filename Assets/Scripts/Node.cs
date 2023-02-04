@@ -7,28 +7,28 @@ public class Node : MonoBehaviour
     // enum/int Traits
     // List of connections
     [Header("Characteristics")]
-    private int eyes = 0;
-    private int nose = 0;
-    private int ears = 0;
+    [SerializeField] private int eyes = 0;
+    [SerializeField] private int nose = 0;
+    [SerializeField] private int ears = 0;
 
-    private int hair = 0;
-    private int makeup = 0;
+    [SerializeField] private int hair = 0;
+    [SerializeField] private int makeup = 0;
 
-    private int frame = 0;
+    [SerializeField] private int frame = 0;
 
     [Header("Node Flags")]
     private bool isHidden = false;
     private bool isPlayer = false;
     private int depth = 0;
 
-    [SerializeField] private Sprite sEyes;
-    [SerializeField] private Sprite sNose;
-    [SerializeField] private Sprite sEars;
+    [SerializeField] private SpriteRenderer sEyes;
+    [SerializeField] private SpriteRenderer sNose;
+    [SerializeField] private SpriteRenderer sEars;
 
-    [SerializeField] private Sprite sHair;
-    [SerializeField] private Sprite sMakeup;
+    [SerializeField] private SpriteRenderer sHair;
+    [SerializeField] private SpriteRenderer sMakeup;
 
-    [SerializeField] private Sprite sFrame;
+    [SerializeField] private SpriteRenderer sFrame;
 
     public List<GameObject> Connections = new List<GameObject> ();
     public GameObject Parent;
@@ -102,9 +102,11 @@ public class Node : MonoBehaviour
             case TraitNames.Traits.Eyes:
                 return eyes;
             case TraitNames.Traits.Makeup:
-                return hair;
-            case TraitNames.Traits.Hair:
                 return makeup;
+            case TraitNames.Traits.Hair:
+                return hair;
+            case TraitNames.Traits.Frame:
+                return frame;
             default:
                 return 0;
         }
@@ -122,13 +124,30 @@ public class Node : MonoBehaviour
     frame = (int)newFrame;
     }
 
-    public void SetSprites(Sprite eye, Sprite nose, Sprite ear, Sprite hair, Sprite makeup, Sprite frame)
+    public void SetSprite(TraitNames.Traits trait, Sprite newSprite)
     {
-        sEyes = eye;
-        sNose = nose;
-        sEars = ear;
-        sHair = hair;
-        sMakeup = makeup;
-        sFrame = frame;
+        switch (trait)
+        {
+            case TraitNames.Traits.Ears:
+                sEars.sprite = newSprite;
+                break;
+            case TraitNames.Traits.Nose:
+                sNose.sprite = newSprite;
+                break;
+            case TraitNames.Traits.Eyes:
+                sEyes.sprite = newSprite;
+                break;
+            case TraitNames.Traits.Makeup:
+                sMakeup.sprite = newSprite;
+                break;
+            case TraitNames.Traits.Hair:
+                sHair.sprite = newSprite;
+                break;
+            case TraitNames.Traits.Frame:
+                sFrame.sprite = newSprite;
+                break;
+            default:
+                break;
+        }
     }
 }

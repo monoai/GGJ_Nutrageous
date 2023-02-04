@@ -119,26 +119,43 @@ public class NodeGenerator : MonoBehaviour
 	//SetFrame
 	var attribute = (TraitNames.Attributes)Random.Range(0,6);
 	node.SetFrame(TraitNames.Traits.Frame, (TraitNames.Frame)1);
+	node.SetSprite(TraitNames.Traits.Frame, framesList[1]);
 		if (currDepth == 1)
 		{
 			node.SetTrait(TraitNames.Traits.Eyes, attribute);
-	} else if (currDepth == 2) {
+			node.SetSprite(TraitNames.Traits.Eyes, eyesList[(int)attribute]);
+		}
+		else if (currDepth == 2) {
 		//Gets parents' traits then assigns
 		var eyes = node.Parent.GetComponent<Node>().GetTraits(TraitNames.Traits.Eyes);
 		node.SetTrait(TraitNames.Traits.Eyes, (TraitNames.Attributes)eyes);
+		node.SetSprite(TraitNames.Traits.Eyes, eyesList[eyes]);
+
 		node.SetTrait(TraitNames.Traits.Ears, attribute);
+		node.SetSprite(TraitNames.Traits.Ears, earsList[(int)attribute]);
+
 		node.SetFrame(TraitNames.Traits.Frame, (TraitNames.Frame)2);
-		//SetFrame
-	} else if (currDepth == 3) {
+		node.SetSprite(TraitNames.Traits.Frame, framesList[2]);
+			//SetFrame
+		}
+		else if (currDepth == 3) {
 		//Gets parents' traits then assigns
 		var eyes = node.Parent.GetComponent<Node>().GetTraits(TraitNames.Traits.Eyes);
 		node.SetTrait(TraitNames.Traits.Eyes, (TraitNames.Attributes)eyes);
+		node.SetSprite(TraitNames.Traits.Eyes, eyesList[eyes]);
+
 		var ears = node.Parent.GetComponent<Node>().GetTraits(TraitNames.Traits.Ears);
 		node.SetTrait(TraitNames.Traits.Ears, (TraitNames.Attributes)ears);
+		node.SetSprite(TraitNames.Traits.Ears, earsList[ears]);
+
 		node.SetTrait(TraitNames.Traits.Nose, attribute);
+		node.SetSprite(TraitNames.Traits.Nose, nosesList[(int)attribute]);
+
 		node.SetFrame(TraitNames.Traits.Frame, (TraitNames.Frame)3);
-		//SetFrame
-	} else {
+		node.SetSprite(TraitNames.Traits.Frame, framesList[3]);
+			//SetFrame
+		}
+		else {
 		Debug.Log("It is a mystery");
 	}
 	var hair = (TraitNames.Hair)Random.Range(0,11);
@@ -146,13 +163,8 @@ public class NodeGenerator : MonoBehaviour
 	node.SetHair(TraitNames.Traits.Hair, hair);
 	node.SetMakeup(TraitNames.Traits.Makeup, makeup);
 
-	node.SetSprites(
-		eyesList[node.GetTraits(TraitNames.Traits.Eyes)], 
-		nosesList[node.GetTraits(TraitNames.Traits.Nose)], 
-		earsList[node.GetTraits(TraitNames.Traits.Ears)], 
-		hairsList[node.GetTraits(TraitNames.Traits.Hair)], 
-		makeupsList[node.GetTraits(TraitNames.Traits.Makeup)], 
-		framesList[node.GetTraits(TraitNames.Traits.Frame)]);
+	node.SetSprite(TraitNames.Traits.Hair, hairsList[(int)hair]);
+	node.SetSprite(TraitNames.Traits.Makeup, makeupsList[(int)makeup]);
 	}
 
 
