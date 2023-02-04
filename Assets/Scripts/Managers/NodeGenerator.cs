@@ -65,9 +65,16 @@ public class NodeGenerator : MonoBehaviour
 	node.SetTrait(TraitNames.Traits.Ears, TraitNames.Attributes.CIRCLE);
 	*/
 	SetSprites(nodeObj);
-	if(currDepth < 3) {
+	if(currDepth < 4) {
 		for(int i = 0; i < children; i++){
-			var newNode = GenerateNode(2, currDepth+1);
+			int child = 0;
+			// Every time the depth is the third tier/layer, it will instead spawn 3 children instead of 2.
+			if(currDepth % 3 == 0) {
+				child = 3;
+			} else {
+				child = 2;
+			}
+			var newNode = GenerateNode(child, currDepth+1);
 			node.Connections.Add(newNode);
 			newNode.GetComponent<Node>().Parent = nodeObj;
 		}
