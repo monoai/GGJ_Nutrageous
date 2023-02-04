@@ -58,6 +58,10 @@ public class NodeGenerator : MonoBehaviour
     private int currNodes = 0;
     private int hiddenCount = 0;
 
+    [Header("Debug Variables")]
+    public float xPos = 0.0f;
+    public float yPos = 0.0f;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,13 +81,16 @@ public class NodeGenerator : MonoBehaviour
 
     private GameObject GenerateNode(int children, GameObject parent, int currDepth){
 	// Assume that the object is being generated on a proper game object, else replace this with the proper parent gameobject.
-	GameObject nodeObj = Instantiate(nodeTemplate, this.transform);
+	GameObject nodeObj = Instantiate(nodeTemplate);//, this.transform);
 	// Don't forget to replace with proper node script
 	Node node = nodeObj.GetComponent<Node>();
 	node.Parent = parent;
 	assignTrait(nodeObj, currDepth);
 	node.SetDepth(currDepth);
 	//SetSprites(nodeObj);
+	// xPos & yPos Values are temporary, feel free to change
+	SetPosition(nodeObj, xPos,yPos);
+	xPos += 7.0f;
 	if(currDepth < 3) {
 		for(int i = 0; i < children; i++){
 			int child = 0;
@@ -165,8 +172,11 @@ public class NodeGenerator : MonoBehaviour
 
 	node.SetSprite(TraitNames.Traits.Hair, hairsList[(int)hair]);
 	node.SetSprite(TraitNames.Traits.Makeup, makeupsList[(int)makeup]);
-	}
+    }
 
+    private void SetPosition(GameObject nodeObj, float x, float y){
+	nodeObj.transform.position = new Vector3(x,y,-1);
+    }
 
  //   private void SetSprites(GameObject node){
 	//// TODO: Add actual sprite replacements.
