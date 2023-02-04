@@ -12,31 +12,40 @@ public class NodeGenerator : MonoBehaviour
     [Header("Sprites")]
     // Eyes
     [Header("Eyes")]
-    public Sprite eye_tri;
-    public Sprite eye_sqr, eye_cir, eye_ova, eye_rec, eye_dia;
-    // Nose
-    [Header("Nose")]
-    public Sprite nose_tri;
-    public Sprite nose_sqr, nose_cir, nose_ova, nose_rec, nose_dia;
+	public List<Sprite> eyesList = new List<Sprite>();
+	//public Sprite eye_tri;
+	//public Sprite eye_sqr, eye_cir, eye_ova, eye_rec, eye_dia;
+
+	// Ears
+	[Header("Ears")]
+	public List<Sprite> earsList = new List<Sprite>();
+	//public Sprite ears_tri;
+	//public Sprite ears_sqr, ears_cir, ears_ova, ears_rec, ears_dia;
+
+	// Nose
+	[Header("Nose")]
+	public List<Sprite> nosesList = new List<Sprite>();
+    //public Sprite nose_tri;
+	//public Sprite nose_sqr, nose_cir, nose_ova, nose_rec, nose_dia;
+
     // Mouth
     //[Header("Mouth")]
     //public Sprite mouth_tri, mouth_sqr, mouth_cir, mouth_ova, mouth_rec, mouth_dia;
-    // Ears
-    [Header("Ears")]
-    public Sprite ears_tri;
-    public Sprite ears_sqr, ears_cir, ears_ova, ears_rec, ears_dia;
 
     [Header("Hair")]
-    public Sprite hair_0;
-    public Sprite hair_1, hair_2, hair_3, hair_4, hair_5, hair_6, hair_7, hair_8, hair_9, hair_10;
+	public List<Sprite> hairsList = new List<Sprite>();
+    //public Sprite hair_0;
+	//public Sprite hair_1, hair_2, hair_3, hair_4, hair_5, hair_6, hair_7, hair_8, hair_9, hair_10;
 
     [Header("Makeup")]
-    public Sprite makeup_0;
-    public Sprite makeup_1, makeup_2, makeup_3, makeup_4, makeup_5, makeup_6, makeup_7, makeup_8, makeup_9, makeup_10;
+	public List<Sprite> makeupsList = new List<Sprite>();
+    //public Sprite makeup_0;
+	//public Sprite makeup_1, makeup_2, makeup_3, makeup_4, makeup_5, makeup_6, makeup_7, makeup_8, makeup_9, makeup_10;
 
     [Header("Frame")]
-    public Sprite frame_1;
-    public Sprite frame_2, frame_3;
+	public List<Sprite> framesList = new List<Sprite>();
+    //public Sprite frame_1;
+	//public Sprite frame_2, frame_3;
 
 	// While we haven't done the actual level implementations, any other necessary information about the level that the node generator also needs will be here. Maybe we could transfer it somewhere else or maybe reworked into another script, we'll figure it out.
     [Header("Level Information")]
@@ -74,7 +83,7 @@ public class NodeGenerator : MonoBehaviour
 	node.Parent = parent;
 	assignTrait(nodeObj, currDepth);
 	node.SetDepth(currDepth);
-	SetSprites(nodeObj);
+	//SetSprites(nodeObj);
 	if(currDepth < 3) {
 		for(int i = 0; i < children; i++){
 			int child = 0;
@@ -109,13 +118,16 @@ public class NodeGenerator : MonoBehaviour
 	Node node = nodeObj.GetComponent<Node>();
 	//SetFrame
 	var attribute = (TraitNames.Attributes)Random.Range(0,6);
-	if(currDepth == 1) {
-		node.SetTrait(TraitNames.Traits.Eyes, attribute);
+	node.SetFrame(TraitNames.Traits.Frame, (TraitNames.Frame)1);
+		if (currDepth == 1)
+		{
+			node.SetTrait(TraitNames.Traits.Eyes, attribute);
 	} else if (currDepth == 2) {
 		//Gets parents' traits then assigns
 		var eyes = node.Parent.GetComponent<Node>().GetTraits(TraitNames.Traits.Eyes);
 		node.SetTrait(TraitNames.Traits.Eyes, (TraitNames.Attributes)eyes);
 		node.SetTrait(TraitNames.Traits.Ears, attribute);
+		node.SetFrame(TraitNames.Traits.Frame, (TraitNames.Frame)2);
 		//SetFrame
 	} else if (currDepth == 3) {
 		//Gets parents' traits then assigns
@@ -124,6 +136,7 @@ public class NodeGenerator : MonoBehaviour
 		var ears = node.Parent.GetComponent<Node>().GetTraits(TraitNames.Traits.Ears);
 		node.SetTrait(TraitNames.Traits.Ears, (TraitNames.Attributes)ears);
 		node.SetTrait(TraitNames.Traits.Nose, attribute);
+		node.SetFrame(TraitNames.Traits.Frame, (TraitNames.Frame)3);
 		//SetFrame
 	} else {
 		Debug.Log("It is a mystery");
@@ -132,11 +145,20 @@ public class NodeGenerator : MonoBehaviour
 	var makeup = (TraitNames.Makeup)Random.Range(0,8);
 	node.SetHair(TraitNames.Traits.Hair, hair);
 	node.SetMakeup(TraitNames.Traits.Makeup, makeup);
-    }
 
-    private void SetSprites(GameObject node){
-	// TODO: Add actual sprite replacements.
-	SpriteRenderer sprite = node.GetComponent<SpriteRenderer>();
-	sprite.color = Color.blue;
-    }
+	node.SetSprites(
+		eyesList[node.GetTraits(TraitNames.Traits.Eyes)], 
+		nosesList[node.GetTraits(TraitNames.Traits.Nose)], 
+		earsList[node.GetTraits(TraitNames.Traits.Ears)], 
+		hairsList[node.GetTraits(TraitNames.Traits.Hair)], 
+		makeupsList[node.GetTraits(TraitNames.Traits.Makeup)], 
+		framesList[node.GetTraits(TraitNames.Traits.Frame)]);
+	}
+
+
+ //   private void SetSprites(GameObject node){
+	//// TODO: Add actual sprite replacements.
+	//SpriteRenderer sprite = node.GetComponent<SpriteRenderer>();
+	//sprite.color = Color.blue;
+ //   }
 }

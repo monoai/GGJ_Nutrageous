@@ -117,5 +117,18 @@ public class Node : MonoBehaviour
     public void SetMakeup(TraitNames.Traits trait, TraitNames.Makeup newMakeup) {
 	makeup = (int)newMakeup;
     }
+    
+    public void SetFrame(TraitNames.Traits trait, TraitNames.Frame newFrame){
+    frame = (int)newFrame;
+    }
 
+    public void SetSprites(Sprite eye, Sprite nose, Sprite ear, Sprite hair, Sprite makeup, Sprite frame)
+    {
+        sEyes = eye;
+        sNose = nose;
+        sEars = ear;
+        sHair = hair;
+        sMakeup = makeup;
+        sFrame = frame;
+    }
 }
