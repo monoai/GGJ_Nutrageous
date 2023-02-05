@@ -18,7 +18,6 @@ public class Node : MonoBehaviour
 
     [Header("Node Flags")]
     private bool isHidden = false;
-    private bool isPlayer = false;
     private int depth = 0;
 
     [SerializeField] private SpriteRenderer sEyes;
@@ -57,12 +56,12 @@ public class Node : MonoBehaviour
 
     public void SetPlayerFlag(bool newBool)
     {
-        isPlayer = newBool;
+        //isPlayer = newBool;
     }
 
     public bool GetPlayerFlag()
     {
-        return isPlayer;
+        return false;
     }
 
     public void SetTrait(TraitNames.Traits trait, TraitNames.Attributes attribute)
