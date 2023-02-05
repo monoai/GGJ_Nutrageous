@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Node : MonoBehaviour
 {
-    // enum/int Traits
-    // List of connections
+    [SerializeField] private GameObject person;
+
     [Header("Characteristics")]
     [SerializeField] public int eyes = 0;
     [SerializeField] public int nose = 0;
@@ -149,5 +149,21 @@ public class Node : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void SetOpacity()
+    {
+        if (isHidden)
+        {
+            person.SetActive(false);
+        }
+        else
+        {
+            person.SetActive(true);
+        }
+
+        Color color = sFrame.color;
+        color.a = 0.25f;
+        sFrame.color = color;
     }
 }
