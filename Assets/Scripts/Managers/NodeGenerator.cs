@@ -71,8 +71,10 @@ public class NodeGenerator : MonoBehaviour
 
 	public WinCondition condition;
 
-    // Start is called before the first frame update
-    void Start()
+	public CameraScript cameraScript;
+
+	// Start is called before the first frame update
+	void Start()
     {
 	// Assume on level start/open the nodes will be generated.
 	init();
@@ -163,7 +165,7 @@ public class NodeGenerator : MonoBehaviour
 	//   }
 
 	private int CoinFlip() {
-	return Random.Range(0,2);
+	return Random.Range(0,5);
     }
 
     private void assignTrait(GameObject nodeObj, int currDepth) {
@@ -266,6 +268,7 @@ public class NodeGenerator : MonoBehaviour
         cardNode.SetSprite(TraitNames.Traits.Makeup, makeupsList[(int)node.makeup]);
 
 		condition.winningNode = cardNode.gameObject;
+		cameraScript.currentNodeLookingAt = node.GetComponent<NodeContainer>();
 	}
 
     //   private void SetSprites(GameObject node){

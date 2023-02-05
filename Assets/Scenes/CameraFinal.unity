@@ -4619,6 +4619,7 @@ MonoBehaviour:
   - {fileID: 1256525745}
   hiddenCardIndex: -1
   condition: {fileID: 1785601471}
+  cameraScript: {fileID: 1825264880}
 --- !u!4 &2080775030
 Transform:
   m_ObjectHideFlags: 0

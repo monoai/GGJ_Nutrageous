@@ -828,6 +828,33 @@ MonoBehaviour:
   hair: 0
   makeup: 0
   frame: 0
+  onHidden:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 3113230836767488507}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 261078913}
+        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
+        m_MethodName: SetActive
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   sEyes: {fileID: 569675045}
   sNose: {fileID: 1804580787}
   sEars: {fileID: 1909917858}
@@ -1447,5 +1474,10 @@ PrefabInstance:
 --- !u!4 &3113230836767488504 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7702202072527391576, guid: 667057029de0efa48a9942adf64caa26, type: 3}
+  m_PrefabInstance: {fileID: 4744503765465608864}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &3113230836767488507 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7702202072527391579, guid: 667057029de0efa48a9942adf64caa26, type: 3}
   m_PrefabInstance: {fileID: 4744503765465608864}
   m_PrefabAsset: {fileID: 0}
