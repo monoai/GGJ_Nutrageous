@@ -67,6 +67,10 @@ public class NodeGenerator : MonoBehaviour
 	public List<GameObject> tier3;
 
 	public List<Node> cardNodes;
+	public int hiddenCardIndex = -1;
+
+	public WinCondition condition;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -102,6 +106,14 @@ public class NodeGenerator : MonoBehaviour
         {
 			SetHidden(tier3[tier3.Count - 1].GetComponent<Node>());
 		}
+
+		for (int index = 0; index < cardNodes.Count; index++)
+        {
+			if (index != hiddenCardIndex)
+            {
+				GenerateNode(cardNodes[index].gameObject, 0);
+			}
+        }
 	}
 
 	private void GenerateNode(GameObject nodeObj, int currDepth)
@@ -196,9 +208,20 @@ public class NodeGenerator : MonoBehaviour
 			//SetFrame
 		}
 		else {
-		Debug.Log("It is a mystery");
-	}
-	var hair = (TraitNames.Hair)Random.Range(0,9);
+			node.SetTrait(TraitNames.Traits.Eyes, attribute);
+			node.SetSprite(TraitNames.Traits.Eyes, eyesList[(int)attribute]);
+
+			attribute = (TraitNames.Attributes)Random.Range(0, 6);
+
+			node.SetTrait(TraitNames.Traits.Ears, attribute);
+			node.SetSprite(TraitNames.Traits.Ears, earsList[(int)attribute]);
+
+			attribute = (TraitNames.Attributes)Random.Range(0, 6);
+
+			node.SetTrait(TraitNames.Traits.Nose, attribute);
+			node.SetSprite(TraitNames.Traits.Nose, nosesList[(int)attribute]);
+		}
+		var hair = (TraitNames.Hair)Random.Range(0,9);
 	var makeup = (TraitNames.Makeup)Random.Range(0,4);
 	node.SetHair(TraitNames.Traits.Hair, hair);
 	node.SetMakeup(TraitNames.Traits.Makeup, makeup);
@@ -220,32 +243,34 @@ public class NodeGenerator : MonoBehaviour
 
 	private void SetHidden(Node node)
     {
-		//node.SetHidden(true);
-  //      hasHidden = true;
+        node.SetHidden(true);
+        hasHidden = true;
 
-		//int indexToSelect = Random.Range(0, cardNodes.Count);
-		//Node cardNode = cardNodes[indexToSelect];
+        hiddenCardIndex = Random.Range(0, cardNodes.Count);
+        Node cardNode = cardNodes[hiddenCardIndex];
 
-		//cardNode.SetTrait(TraitNames.Traits.Eyes, (TraitNames.Attributes)node.eyes);
-		//cardNode.SetSprite(TraitNames.Traits.Eyes, eyesList[(int)node.eyes]);
+        cardNode.SetTrait(TraitNames.Traits.Eyes, (TraitNames.Attributes)node.eyes);
+        cardNode.SetSprite(TraitNames.Traits.Eyes, eyesList[(int)node.eyes]);
 
 
-		//cardNode.SetTrait(TraitNames.Traits.Ears, (TraitNames.Attributes)node.ears);
-		//cardNode.SetSprite(TraitNames.Traits.Ears, earsList[(int)node.ears]);
+        cardNode.SetTrait(TraitNames.Traits.Ears, (TraitNames.Attributes)node.ears);
+        cardNode.SetSprite(TraitNames.Traits.Ears, earsList[(int)node.ears]);
 
-		//cardNode.SetTrait(TraitNames.Traits.Nose, (TraitNames.Attributes)node.nose);
-		//cardNode.SetSprite(TraitNames.Traits.Nose, nosesList[(int)node.nose]);
+        cardNode.SetTrait(TraitNames.Traits.Nose, (TraitNames.Attributes)node.nose);
+        cardNode.SetSprite(TraitNames.Traits.Nose, nosesList[(int)node.nose]);
 
-		//cardNode.SetHair(TraitNames.Traits.Hair, (TraitNames.Hair)node.hair);
-		//cardNode.SetMakeup(TraitNames.Traits.Makeup, (TraitNames.Makeup)node.makeup);
+        cardNode.SetHair(TraitNames.Traits.Hair, (TraitNames.Hair)node.hair);
+        cardNode.SetMakeup(TraitNames.Traits.Makeup, (TraitNames.Makeup)node.makeup);
 
-		//cardNode.SetSprite(TraitNames.Traits.Hair, hairsList[(int)node.hair]);
-		//cardNode.SetSprite(TraitNames.Traits.Makeup, makeupsList[(int)node.makeup]);
+        cardNode.SetSprite(TraitNames.Traits.Hair, hairsList[(int)node.hair]);
+        cardNode.SetSprite(TraitNames.Traits.Makeup, makeupsList[(int)node.makeup]);
+
+		condition.winningNode = cardNode.gameObject;
 	}
 
-	//   private void SetSprites(GameObject node){
-	//// TODO: Add actual sprite replacements.
-	//SpriteRenderer sprite = node.GetComponent<SpriteRenderer>();
-	//sprite.color = Color.blue;
-	//   }
+    //   private void SetSprites(GameObject node){
+    //// TODO: Add actual sprite replacements.
+    //SpriteRenderer sprite = node.GetComponent<SpriteRenderer>();
+    //sprite.color = Color.blue;
+    //   }
 }
