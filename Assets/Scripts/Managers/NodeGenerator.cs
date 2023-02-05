@@ -56,12 +56,17 @@ public class NodeGenerator : MonoBehaviour
     [Header("Algorithm Variables")]
     private int currDepth = 0;
     private int currNodes = 0;
-    private int hiddenCount = 0;
+    private bool hasHidden = false;
 
     [Header("Debug Variables")]
     public float xPos = 0.0f;
     public float yPos = 0.0f;
 
+	public List<GameObject> tier1;
+	public List<GameObject> tier2;
+	public List<GameObject> tier3;
+
+	public List<Node> cardNodes;
     // Start is called before the first frame update
     void Start()
     {
@@ -74,50 +79,78 @@ public class NodeGenerator : MonoBehaviour
 	Debug.Log("currDepth: " + currDepth);
 	Debug.Log("tier.Length: " + tier.Length);
 	//while(currDepth != tier.Length) {
-		GenerateNode(3, null, currDepth);
+		//GenerateNode(3, null, currDepth);
 		//currDepth++;
 	//}
-    }
 
-    private GameObject GenerateNode(int children, GameObject parent, int currDepth){
-	// Assume that the object is being generated on a proper game object, else replace this with the proper parent gameobject.
-	GameObject nodeObj = Instantiate(nodeTemplate);//, this.transform);
-	// Don't forget to replace with proper node script
-	Node node = nodeObj.GetComponent<Node>();
-	node.Parent = parent;
-	assignTrait(nodeObj, currDepth);
-	node.SetDepth(currDepth);
-	//SetSprites(nodeObj);
-	// xPos & yPos Values are temporary, feel free to change
-	SetPosition(nodeObj, xPos,yPos);
-	xPos += 7.0f;
-	if(currDepth < 3) {
-		for(int i = 0; i < children; i++){
-			int child = 0;
-			// Every time the depth is the third tier/layer, it will instead spawn 3 children instead of 2.
-			if(currDepth % 3 == 0) {
-				child = 3;
-			} else {
-				child = 2;
-			}
-			var newNode = GenerateNode(child, nodeObj, currDepth+1);
-			node.Connections.Add(newNode);
-			//newNode.GetComponent<Node>().Parent = nodeObj;
-			newNode.GetComponent<Node>().SetDepth(currDepth+1);
-			if(CoinFlip() == 1 && hiddenCount < 3) {
-				newNode.GetComponent<Node>().SetHidden(true);
-				hiddenCount++;
-			}
-			if (CoinFlip() == 2 && !newNode.GetComponent<Node>().GetPlayerFlag()){
-				newNode.GetComponent<Node>().SetPlayerFlag(true);
-            }
+		foreach (GameObject node in tier1)
+		{
+			GenerateNode(node, 1);
+		}
 
+		foreach (GameObject node in tier2)
+		{
+			GenerateNode(node, 2);
+		}
+
+		foreach (GameObject node in tier3)
+		{
+			GenerateNode(node, 3);
+		}
+
+		if (!hasHidden)
+        {
+			SetHidden(tier3[tier3.Count - 1].GetComponent<Node>());
 		}
 	}
-	return nodeObj;
-    }
 
-    private int CoinFlip() {
+	private void GenerateNode(GameObject nodeObj, int currDepth)
+    {
+		Node node = nodeObj.GetComponent<Node>();
+		assignTrait(nodeObj, currDepth);
+		node.SetDepth(currDepth);
+		//SetSprites(nodeObj);
+
+	}
+
+	//   private GameObject GenerateNode(int children, GameObject parent, int currDepth){
+	//// Assume that the object is being generated on a proper game object, else replace this with the proper parent gameobject.
+	////GameObject nodeObj = Instantiate(nodeTemplate);//, this.transform);
+	//// Don't forget to replace with proper node script
+	//Node node = parent.GetComponent<Node>();
+	//assignTrait(parent, currDepth);
+	//node.SetDepth(currDepth);
+	////SetSprites(nodeObj);
+	//// xPos & yPos Values are temporary, feel free to change
+	//SetPosition(parent, xPos,yPos);
+	//xPos += 7.0f;
+	//if(currDepth < 3) {
+	//	for(int i = 0; i < children; i++){
+	//		int child = 0;
+	//		// Every time the depth is the third tier/layer, it will instead spawn 3 children instead of 2.
+	//		if(currDepth % 3 == 0) {
+	//			child = 3;
+	//		} else {
+	//			child = 2;
+	//		}
+	//		var newNode = GenerateNode(child, nodeObj, currDepth+1);
+	//		node.Connections.Add(newNode);
+	//		//newNode.GetComponent<Node>().Parent = nodeObj;
+	//		newNode.GetComponent<Node>().SetDepth(currDepth+1);
+	//		if(CoinFlip() == 1 && hiddenCount < 3) {
+	//			newNode.GetComponent<Node>().SetHidden(true);
+	//			hiddenCount++;
+	//		}
+	//		if (CoinFlip() == 2 && !newNode.GetComponent<Node>().GetPlayerFlag()){
+	//			newNode.GetComponent<Node>().SetPlayerFlag(true);
+	//           }
+
+	//	}
+	//}
+	////return nodeObj;
+	//   }
+
+	private int CoinFlip() {
 	return Random.Range(0,2);
     }
 
@@ -125,8 +158,8 @@ public class NodeGenerator : MonoBehaviour
 	Node node = nodeObj.GetComponent<Node>();
 	//SetFrame
 	var attribute = (TraitNames.Attributes)Random.Range(0,6);
-	node.SetFrame(TraitNames.Traits.Frame, (TraitNames.Frame)1);
-	node.SetSprite(TraitNames.Traits.Frame, framesList[0]);
+	//node.SetFrame(TraitNames.Traits.Frame, (TraitNames.Frame)1);
+	//node.SetSprite(TraitNames.Traits.Frame, framesList[0]);
 		if (currDepth == 1)
 		{
 			node.SetTrait(TraitNames.Traits.Eyes, attribute);
@@ -141,8 +174,8 @@ public class NodeGenerator : MonoBehaviour
 		node.SetTrait(TraitNames.Traits.Ears, attribute);
 		node.SetSprite(TraitNames.Traits.Ears, earsList[(int)attribute]);
 
-		node.SetFrame(TraitNames.Traits.Frame, (TraitNames.Frame)2);
-		node.SetSprite(TraitNames.Traits.Frame, framesList[1]);
+		//node.SetFrame(TraitNames.Traits.Frame, (TraitNames.Frame)2);
+		//node.SetSprite(TraitNames.Traits.Frame, framesList[1]);
 			//SetFrame
 		}
 		else if (currDepth == 3) {
@@ -158,29 +191,61 @@ public class NodeGenerator : MonoBehaviour
 		node.SetTrait(TraitNames.Traits.Nose, attribute);
 		node.SetSprite(TraitNames.Traits.Nose, nosesList[(int)attribute]);
 
-		node.SetFrame(TraitNames.Traits.Frame, (TraitNames.Frame)3);
-		node.SetSprite(TraitNames.Traits.Frame, framesList[2]);
+		//node.SetFrame(TraitNames.Traits.Frame, (TraitNames.Frame)3);
+		//node.SetSprite(TraitNames.Traits.Frame, framesList[2]);
 			//SetFrame
 		}
 		else {
 		Debug.Log("It is a mystery");
 	}
-	var hair = (TraitNames.Hair)Random.Range(0,10);
+	var hair = (TraitNames.Hair)Random.Range(0,9);
 	var makeup = (TraitNames.Makeup)Random.Range(0,4);
 	node.SetHair(TraitNames.Traits.Hair, hair);
 	node.SetMakeup(TraitNames.Traits.Makeup, makeup);
 
 	node.SetSprite(TraitNames.Traits.Hair, hairsList[(int)hair]);
 	node.SetSprite(TraitNames.Traits.Makeup, makeupsList[(int)makeup]);
-    }
+		if (!hasHidden)
+        {
+			if (CoinFlip() == 1)
+			{
+				SetHidden(node);
+			}
+        }
+	}
 
     private void SetPosition(GameObject nodeObj, float x, float y){
 	nodeObj.transform.position = new Vector3(x,y,-1);
     }
 
- //   private void SetSprites(GameObject node){
+	private void SetHidden(Node node)
+    {
+		//node.SetHidden(true);
+  //      hasHidden = true;
+
+		//int indexToSelect = Random.Range(0, cardNodes.Count);
+		//Node cardNode = cardNodes[indexToSelect];
+
+		//cardNode.SetTrait(TraitNames.Traits.Eyes, (TraitNames.Attributes)node.eyes);
+		//cardNode.SetSprite(TraitNames.Traits.Eyes, eyesList[(int)node.eyes]);
+
+
+		//cardNode.SetTrait(TraitNames.Traits.Ears, (TraitNames.Attributes)node.ears);
+		//cardNode.SetSprite(TraitNames.Traits.Ears, earsList[(int)node.ears]);
+
+		//cardNode.SetTrait(TraitNames.Traits.Nose, (TraitNames.Attributes)node.nose);
+		//cardNode.SetSprite(TraitNames.Traits.Nose, nosesList[(int)node.nose]);
+
+		//cardNode.SetHair(TraitNames.Traits.Hair, (TraitNames.Hair)node.hair);
+		//cardNode.SetMakeup(TraitNames.Traits.Makeup, (TraitNames.Makeup)node.makeup);
+
+		//cardNode.SetSprite(TraitNames.Traits.Hair, hairsList[(int)node.hair]);
+		//cardNode.SetSprite(TraitNames.Traits.Makeup, makeupsList[(int)node.makeup]);
+	}
+
+	//   private void SetSprites(GameObject node){
 	//// TODO: Add actual sprite replacements.
 	//SpriteRenderer sprite = node.GetComponent<SpriteRenderer>();
 	//sprite.color = Color.blue;
- //   }
+	//   }
 }

@@ -7,14 +7,14 @@ public class Node : MonoBehaviour
     // enum/int Traits
     // List of connections
     [Header("Characteristics")]
-    [SerializeField] private int eyes = 0;
-    [SerializeField] private int nose = 0;
-    [SerializeField] private int ears = 0;
+    [SerializeField] public int eyes = 0;
+    [SerializeField] public int nose = 0;
+    [SerializeField] public int ears = 0;
 
-    [SerializeField] private int hair = 0;
-    [SerializeField] private int makeup = 0;
+    [SerializeField] public int hair = 0;
+    [SerializeField] public int makeup = 0;
 
-    [SerializeField] private int frame = 0;
+    [SerializeField] public int frame = 0;
 
     [Header("Node Flags")]
     private bool isHidden = false;
