@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class Node : MonoBehaviour
 {
@@ -18,6 +19,7 @@ public class Node : MonoBehaviour
 
     [Header("Node Flags")]
     private bool isHidden = false;
+    public UnityEvent onHidden;
     private int depth = 0;
 
     [SerializeField] private SpriteRenderer sEyes;
@@ -47,6 +49,7 @@ public class Node : MonoBehaviour
     public void SetHidden(bool newBool)
     {
         isHidden = newBool;
+        onHidden?.Invoke();
     }
 
     public void SetDepth(int newDepth)

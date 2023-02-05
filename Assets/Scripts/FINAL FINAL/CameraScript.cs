@@ -37,6 +37,10 @@ public class CameraScript : MonoBehaviour
     {
         if (!debouncer) { 
             UpdateButtons();
+            Vector3 positon = transform.position;
+            positon.x = currentNodeLookingAt.transform.position.x;
+            positon.y = currentNodeLookingAt.transform.position.y;
+            transform.position = positon;
             debouncer = true;
         }
     }
