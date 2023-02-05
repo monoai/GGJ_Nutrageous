@@ -238,7 +238,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: C Chord
-    clip: {fileID: 8300000, guid: 484f969df7b9ca849a7ce3e80c56269f, type: 3}
+    clip: {fileID: 8300000, guid: ed13f6c02faa27f77b095c1060e3b86d, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -537,7 +537,7 @@ MonoBehaviour:
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
             m_IntArgument: 0
             m_FloatArgument: 0
-            m_StringArgument: N
+            m_StringArgument: Note 1
             m_BoolArgument: 0
           m_CallState: 2
 --- !u!1 &825009276 stripped
