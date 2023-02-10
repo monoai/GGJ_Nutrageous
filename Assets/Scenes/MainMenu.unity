@@ -660,6 +660,7 @@ GameObject:
   - component: {fileID: 1100489249}
   - component: {fileID: 1100489251}
   - component: {fileID: 1100489250}
+  - component: {fileID: 1100489252}
   m_Layer: 5
   m_Name: GodRays
   m_TagString: Untagged
@@ -700,7 +701,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.34117648}
+  m_Color: {r: 1, g: 1, b: 1, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -725,6 +726,26 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1100489248}
   m_CullTransparentMesh: 1
+--- !u!95 &1100489252
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1100489248}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 49fad3a4d23e2a3148a5c7cc589e1ee6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1 &1384216901
 GameObject:
   m_ObjectHideFlags: 0
@@ -1166,6 +1187,10 @@ PrefabInstance:
     - target: {fileID: 493921892682595504, guid: ed6e7feffd938224f8be3233d1e892ad, type: 3}
       propertyPath: m_Name
       value: DustMotes
+      objectReference: {fileID: 0}
+    - target: {fileID: 493921892682595504, guid: ed6e7feffd938224f8be3233d1e892ad, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 493921892682595517, guid: ed6e7feffd938224f8be3233d1e892ad, type: 3}
       propertyPath: m_RootOrder
