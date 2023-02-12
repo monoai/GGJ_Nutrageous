@@ -245,13 +245,13 @@ MonoBehaviour:
     source: {fileID: 0}
   - name: Note 1
     clip: {fileID: 8300000, guid: e4b17e246f9c5364b8cd2387fc38bc3f, type: 3}
-    volume: 1
+    volume: 0.75
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Note 2
     clip: {fileID: 8300000, guid: 3a4f3952071d8b343b39aa8eace25b76, type: 3}
-    volume: 1
+    volume: 0.75
     pitch: 1
     loop: 0
     source: {fileID: 0}
@@ -260,6 +260,12 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+    source: {fileID: 0}
+  - name: BGM
+    clip: {fileID: 8300000, guid: e0e32fdb9387e70478d56c317151432a, type: 3}
+    volume: 0.25
+    pitch: 1
+    loop: 1
     source: {fileID: 0}
 --- !u!4 &401313760
 Transform:
@@ -765,7 +771,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1384216902
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1324,6 +1330,10 @@ PrefabInstance:
       propertyPath: VelocityModule.z.maxCurve.m_Curve.Array.data[0].value
       value: -0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 493921892682595519, guid: ed6e7feffd938224f8be3233d1e892ad, type: 3}
+      propertyPath: m_RenderMode
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed6e7feffd938224f8be3233d1e892ad, type: 3}
 --- !u!1 &2114695150
@@ -1407,6 +1417,7 @@ GameObject:
   - component: {fileID: 2146666271}
   - component: {fileID: 2146666270}
   - component: {fileID: 2146666273}
+  - component: {fileID: 2146666274}
   m_Layer: 5
   m_Name: Instructions Button
   m_TagString: Untagged
@@ -1566,3 +1577,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   objectToActivate: {fileID: 1753309485}
   objectToDeactivate: {fileID: 1507526628}
+--- !u!114 &2146666274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2146666268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 401313759}
+          m_TargetAssemblyTypeName: AudioManager, Assembly-CSharp
+          m_MethodName: Play
+          m_Mode: 5
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: Note 2
+            m_BoolArgument: 0
+          m_CallState: 2
