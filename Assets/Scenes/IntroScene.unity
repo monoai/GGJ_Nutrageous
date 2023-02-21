@@ -172,13 +172,13 @@ MonoBehaviour:
     loop: 0
     source: {fileID: 0}
   - name: Note 3
-    clip: {fileID: 8300000, guid: e742fafb735df7f42b15519a9adc411f, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: beb017dbff91a67438b051fca1c51e4d, type: 3}
+    volume: 0.1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: BGM
-    clip: {fileID: 8300000, guid: e0e32fdb9387e70478d56c317151432a, type: 3}
+    clip: {fileID: 8300000, guid: 44c47acd989bada41a27932a75a69af3, type: 3}
     volume: 0.25
     pitch: 1
     loop: 1
