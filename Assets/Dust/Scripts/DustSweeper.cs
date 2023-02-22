@@ -26,10 +26,19 @@ public class DustSweeper : MonoBehaviour
                     if (dustComponent != null)
                     {
                         dustComponent.SweepPosition(pixelPosition, sweepRadius);
+                        if (Input.GetMouseButtonDown(0))
+                        {
+                            Debug.Log("Mouse pressed");
+                            AudioManager.instance.Play("Dusting");
+                        }
                     }
                 }
             }
-
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            Debug.Log("Mouse released");
+            AudioManager.instance.Stop("Dusting");
         }
     }
 
